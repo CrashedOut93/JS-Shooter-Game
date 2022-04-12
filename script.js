@@ -85,7 +85,8 @@ class Explosion {
         }
     }
     draw(){
-        ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight)
+        ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight,
+            this.x, this.y, this.size);
     }
 
 }
@@ -104,8 +105,11 @@ window.addEventListener('click', function(e){
     ravens.forEach(object => {
         if (object.randomColors[0] === pc[0] && object.randomColors[1] === pc[1]
             && object.randomColors[2] === pc[2]){
+                //collision detected
                 object.markedForDeletion = true;
                 score++;
+                explosions.push(new Explosion(object.x, object.y, object.width));
+                console.log(explosions)
             }
     })
 })
