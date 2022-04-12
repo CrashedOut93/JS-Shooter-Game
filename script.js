@@ -21,17 +21,22 @@ class Raven{
         this.directionY = Math.random() * 5 - 2.5;
         this.markedForDeletion = false;
         this.image = new Image();
-        this.image.src = 'images/fly-1.png';
+        this.image.src = 'images/raven.png';
         this.frame = 0;
         this.maxFrame = 4;
         this.timeSinceFlap = 0;  
         this.flapInterval = 100;
     }
-    update(){
+    update(deltatime){
         this.x -= this.directionX;
         if (this.x < 0 - this.width) this.markedForDeletion = true;
-        if (this.frame > this.maxFrame) this.frame = 0;
-        // else this.frame++;
+        this.timeSinceFlap += deltatime;
+        if (this.timeSinceFlap > this.flapInterval){
+            if (this.frame > this.maxFrame) this.frame = 0;
+            else this.frame++;
+            this.timeSinceFlap = 0;
+        }
+            
     }
     draw(){
         ctx.strokeRect(this.x, this.y, this.width, this.height);
