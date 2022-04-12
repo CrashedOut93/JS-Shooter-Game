@@ -61,11 +61,11 @@ class Raven{
     }
 }
 
-let explosion = [];
+let explosions = [];
 class Explosion {
     constructor(x, y, size){
         this.image = new Image();
-        this.image.src = 'boom.png';
+        this.image.src = 'images/boom.png';
         this.spriteWidth = 200;
         this.spriteHeight = 179;
         this.size = size; 
@@ -76,17 +76,20 @@ class Explosion {
         this.sound.src = 'boom.wav';
         this.timeSinceLastFrame = 0;
         this.frameInterval = 200;
+        this.markedForDeletion = false;
     }
     update(deltatime){
         if (this.frame === 0) this.sound.play();
         this.timeSinceLastFrame += deltatime;
             if (this.timeSinceLastFrame > this.frameInterval){
                 this.frame++;
+                this.timeSinceLastFrame = 0;
+                if (this.frame > 5) this.markedForDeletion = true;
         }
     }
     draw(){
         ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight,
-            this.x, this.y, this.size);
+            this.x, this.y, this.size, this.size);
     }
 
 }
@@ -128,9 +131,10 @@ function animate(timestamp){
         })
     };
     drawScore();
-    [...ravens].forEach(object => object.update(deltatime));
-    [...ravens].forEach(object => object.draw());
+    [...ravens, ...explosions].forEach(object => object.update(deltatime));
+    [...ravens, ...explosions].forEach(object => object.draw());
     ravens = ravens.filter(object => !object.markedForDeletion)
+    explosions = explosions.filter(object => !object.markedForDeletion)
     requestAnimationFrame(animate);
 }
 animate(0);
