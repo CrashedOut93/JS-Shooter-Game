@@ -61,6 +61,14 @@ class Raven{
     }
 }
 
+let explosion = [];
+class Explosion {
+    constructor(x, y, size){
+        this.image = new Image();
+        this.image.src = 'boom.png'
+    }
+}
+
 function drawScore(){
     ctx.fillStyle = 'black'; 
     ctx.fillText('Score: ' + score, 50, 75);
