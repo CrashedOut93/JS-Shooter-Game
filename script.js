@@ -65,7 +65,15 @@ let explosion = [];
 class Explosion {
     constructor(x, y, size){
         this.image = new Image();
-        this.image.src = 'boom.png'
+        this.image.src = 'boom.png';
+        this.spriteWidth = 200;
+        this.spriteHeight = 179;
+        this.size = size; 
+        this.x = x; 
+        this.y = y;
+        this.frame = 0;
+        this.sound = new Audio();
+        this.sound.src = 'boom.wav'
     }
 }
 
