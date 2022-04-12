@@ -73,8 +73,21 @@ class Explosion {
         this.y = y;
         this.frame = 0;
         this.sound = new Audio();
-        this.sound.src = 'boom.wav'
+        this.sound.src = 'boom.wav';
+        this.timeSinceLastFrame = 0;
+        this.frameInterval = 200;
     }
+    update(deltatime){
+        if (this.frame === 0) this.sound.play();
+        this.timeSinceLastFrame += deltatime;
+            if (this.timeSinceLastFrame > this.frameInterval){
+                this.frame++;
+        }
+    }
+    draw(){
+        ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight)
+    }
+
 }
 
 function drawScore(){
