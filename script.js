@@ -10,8 +10,8 @@ let lastTime = 0;
 let ravens = [];
 class Raven{
     constructor(){
-        this.spriteWidth = 275;
-        this.spriteHeight = 270;
+        this.spriteWidth = 271;
+        this.spriteHeight = 194;
         this.sizeModifier = Math.random() * 0.6 + 0.4;
         this.width = this.spriteWidth * this.sizeModifier;
         this.height = this.spriteHeight * this.sizeModifier; 
@@ -25,10 +25,11 @@ class Raven{
         this.frame = 0;
         this.maxFrame = 4;
         this.timeSinceFlap = 0;  
-        this.flapInterval = 100;
+        this.flapInterval = Math.random() * 50 + 50;
     }
     update(deltatime){
         this.x -= this.directionX;
+        this.y += this.directionY
         if (this.x < 0 - this.width) this.markedForDeletion = true;
         this.timeSinceFlap += deltatime;
         if (this.timeSinceFlap > this.flapInterval){
