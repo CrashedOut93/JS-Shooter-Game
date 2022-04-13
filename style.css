@@ -1,8 +1,9 @@
 body{
     /* background: linear-gradient(125deg,  red, green, blue); */
-    background: 'images/wall.jpeg';
+    background: url('images/wall-3.jpeg') no-repeat center;
     width: 100vw;
     height: 100vh;
+    background-size: cover;
     overflow: hidden;
 }
 canvas{
