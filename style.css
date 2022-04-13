@@ -1,5 +1,6 @@
 body{
-    background: linear-gradient(125deg,  red, green, blue);
+    /* background: linear-gradient(125deg,  red, green, blue); */
+    background: 'images/wall.jpeg';
     width: 100vw;
     height: 100vh;
     overflow: hidden;

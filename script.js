@@ -36,7 +36,7 @@ class Raven{
         this.flapInterval = Math.random() * 50 + 50;
         this.randomColors = [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)];
         this.color = 'rgb(' + this.randomColors[0] + ',' + this.randomColors[1] + ',' + this.randomColors[2] + ')';
-        this.hasTrail = Math.random()
+        this.hasTrail = Math.random() > 0.5;
     }
     update(deltatime){
         if (this.y < 0 || this.y > canvas.height - this.height){
@@ -50,8 +50,13 @@ class Raven{
             if (this.frame > this.maxFrame) this.frame = 0;
             else this.frame++;
             this.timeSinceFlap = 0;
-            particles.push(new Particle(this.x, this.y, this.width, this.color));
+            if (this.hasTrail){
+                for (let i = 0; i < 5; i++){
+                    particles.push(new Particle(this.x, this.y, this.width, this.color));
+                }
+                
         }
+    }
         if (this.x < 0 - this.width) gameOver = true;
             
     }
@@ -67,7 +72,7 @@ let particles = [];
 class Particle {
     constructor(x, y, size, color){
         this.size = size;
-        this.x = x + this.size/2; 
+        this.x = x + this.size/2 + Math.random() * 50 - 25; 
         this.y = y + this.size/3;
         this.radius = Math.random() * this.size/10;
         this.maxRadius = Math.random() * 20 + 35;
@@ -77,14 +82,17 @@ class Particle {
     }
     update(){
         this.x += this.speedX;
-        this.radius += 0.2;
-        if (this.radius > this.maxRadius) this.markedForDeletion = true;
+        this.radius += 0.3;
+        if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
     }
     draw(){
+        ctx.save();
+        ctx.globalAlpha = 1 - this.radius/this.maxRadius;
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
     }
 }
 
