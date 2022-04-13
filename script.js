@@ -65,8 +65,9 @@ class Raven{
 let particles = [];
 class Particle {
     constructor(x, y, size, color){
-        this.x = x; 
-        this.y = y;
+        this.size = size;
+        this.x = x + this.size/2; 
+        this.y = y + this.size/3;
         this.radius = Math.random() * this.size/10;
         this.maxRadius = Math.random() * 20 + 35;
         this.markedForDeletion = false; 
@@ -163,10 +164,11 @@ function animate(timestamp){
         })
     };
     drawScore();
-    [...ravens, ...explosions].forEach(object => object.update(deltatime));
-    [...ravens, ...explosions].forEach(object => object.draw());
-    ravens = ravens.filter(object => !object.markedForDeletion)
-    explosions = explosions.filter(object => !object.markedForDeletion)
+    [...ravens, ...explosions, ...particles].forEach(object => object.update(deltatime));
+    [...ravens, ...explosions, ...particles].forEach(object => object.draw());
+    ravens = ravens.filter(object => !object.markedForDeletion);
+    explosions = explosions.filter(object => !object.markedForDeletion);
+    particles = particles.filter(object => !object.markedForDeletion);
     if (!gameOver) requestAnimationFrame(animate);
     else drawGameOver();
 }
