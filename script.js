@@ -49,6 +49,7 @@ class Raven{
             if (this.frame > this.maxFrame) this.frame = 0;
             else this.frame++;
             this.timeSinceFlap = 0;
+            particles.push(new Particle(this.x, this.y, this.width, this.color));
         }
         if (this.x < 0 - this.width) gameOver = true;
             
@@ -61,10 +62,27 @@ class Raven{
     }
 }
 
-let partcles = [];
+let particles = [];
 class Particle {
     constructor(x, y, size, color){
-        
+        this.x = x; 
+        this.y = y;
+        this.radius = Math.random() * this.size/10;
+        this.maxRadius = Math.random() * 20 + 35;
+        this.markedForDeletion = false; 
+        this.speedX = Math.random() * 1 + 0.5;
+        this.color = color; 
+    }
+    update(){
+        this.x += this.speedX;
+        this.radius += 0.2;
+        if (this.radius > this.maxRadius) this.markedForDeletion = true;
+    }
+    draw(){
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
     }
 }
 
