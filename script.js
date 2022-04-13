@@ -61,6 +61,13 @@ class Raven{
     }
 }
 
+let partcles = [];
+class Particle {
+    constructor(x, y, size, color){
+        
+    }
+}
+
 let explosions = [];
 class Explosion {
     constructor(x, y, size){
