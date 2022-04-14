@@ -160,9 +160,7 @@ window.addEventListener('click', function(e){
     })
 })
 
-e.addEventListener('click', function(){
-    location.reload()
-});
+
 
 function animate(timestamp){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
