@@ -68,6 +68,7 @@ class Raven{
     }
 }
 
+
 let particles = [];
 class Particle {
     constructor(x, y, size, color){
@@ -158,6 +159,8 @@ window.addEventListener('click', function(e){
             }
     })
 })
+
+window.addEventListener
 
 function animate(timestamp){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
