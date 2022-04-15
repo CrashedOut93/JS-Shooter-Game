@@ -157,6 +157,9 @@ window.addEventListener('click', function(e){
                 explosions.push(new Explosion(object.x, object.y, object.width));
                 console.log(explosions)
             }
+        if (drawGameOver){
+            
+        }    
     })
 })
 
