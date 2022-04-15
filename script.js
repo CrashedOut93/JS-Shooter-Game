@@ -15,6 +15,8 @@ let timeToNextRaven = 0;
 let ravenInterval = 500;
 let lastTime = 0;
 
+
+
 let ravens = [];
 class Raven{
     constructor(){
@@ -156,10 +158,7 @@ window.addEventListener('click', function(e){
                 score++;
                 explosions.push(new Explosion(object.x, object.y, object.width));
                 console.log(explosions)
-            }
-        if (drawGameOver){
-            
-        }    
+            }  
     })
 })
 
